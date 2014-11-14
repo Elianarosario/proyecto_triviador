@@ -7,16 +7,14 @@
 	
 {%  block content %}
 	<div class="container">
-		<body background "bgcolor"="FFCECB">
+		<body background bgcolor="FFCECB">
 		<div class="class row">
 		<div class="class col-xs-12">
 			<form action="" method="post">
-				{% csrf_token %}
-					{{ formulario.as_p }}
-				<input type="submit" name="" value="Registrar">	
-			</form>
+			<h2>Bienvenido!!!!!{{ user.get_full_name }}</h2>
 		</div>
 		</div>
 	</div>
+	{% include "includes/footer.html" %}
 {% endblock %}
 	

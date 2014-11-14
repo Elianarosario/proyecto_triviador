@@ -5,4 +5,4 @@ from django.http import HttpResponseRedirect, HttpResponse
 
 # Create your views here.
 def inicio_view(request):
-	return render_to_response("usuario/inicio.html",{},context_instance=RequestContext(request))
+	return render_to_response("principal/inicio.html",{},context_instance=RequestContext(request))
