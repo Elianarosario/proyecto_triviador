@@ -4,6 +4,11 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import *
+from captcha.fields import ReCaptchaField
+
+
+class for_captcha(forms.Form):
+    captcha = ReCaptchaField(attrs={'theme': 'clean'})
 
 class form_perfil(ModelForm):
 	class Meta:
@@ -11,6 +16,8 @@ class form_perfil(ModelForm):
 		exclude=['user']
 
 
+	
+		
 class for_usuario(UserCreationForm):
 	username=forms.CharField(max_length=40,required=True,help_text=False,label="Nickname")
 	password=forms.CharField(help_text=False,label="contraseña de confirmacion")

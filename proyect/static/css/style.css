@@ -1,4 +1,13 @@
-.bt
+#bt
+{
+	margin-top: 19px;
+	margin-right:3px;
+	margin-bottom:3px;
+	margin-left:3px;
+	background: #000000;
+	font-style: verdana;
+}
+.active.bt
 {
 	margin-top: 19px;
 	margin-right:3px;
@@ -7,7 +16,7 @@
 	background: #00FFFF;
 	font-style: verdana;
 }
-.bta
+.btaa
 {
 	margin-top: 19px;
 	margin-right:3px;
@@ -25,13 +34,13 @@
 {
   width: 600px;
   height: 400px;
-  background: #00FFFF;
+  background: #FFD700;
 }
 #container
 {
-	background:center;
+	background:#00FFFF;
 }
 .footer{
-	height: 120px;
+	height: 1400px;
 	background: yellow;
 }

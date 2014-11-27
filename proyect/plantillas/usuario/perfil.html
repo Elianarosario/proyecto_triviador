@@ -7,11 +7,22 @@
 	
 {%  block content %}
 	<div class="container">
+		<div class="col-xs-4">
+				<ul class="nav nav-pills">
+					{% if user.is_authenticated  %}
+						<li class="active"><a href="/logout"><FONT FACE="impact" SIZE=4 COLOR="black">SALIR</FONT></a></li>	
+					{%else%}
+						<li class="active" ><a href="/login/"><FONT FACE="impact" SIZE=4 COLOR="black">LOGIN</FONT></a></li>	
+					{%endif%}
+ 				
+				</ul>
+			</div>
 		<body background bgcolor="FFCECB">
 		<div class="class row">
 		<div class="class col-xs-12">
 			<form action="" method="post">
 			<h2>Bienvenido!!!!!{{ user.get_full_name }}</h2>
+			<img src="/media/{{user.perfil.avatar.url}}" alt="avatar">
 		</div>
 		</div>
 	</div>

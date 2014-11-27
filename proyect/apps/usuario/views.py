@@ -2,12 +2,13 @@ from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect, HttpResponse
 from .forms import *
-
-from django.contrib.auth.forms import UserCreationForm 
 from .models import *
+from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login , authenticate, logout
+
+
 import pdb
 
 # Create your views here.
@@ -29,20 +30,39 @@ def registro_view(request):
 def login_view(request):
 	if request.method=="POST":
 		formulario=AuthenticationForm(request.POST)
-		if formulario.is_valid:
-			usuario=request.POST['username']
-			contrasena=request.POST['password']
-			acceso=authenticate(username=usuario,password=contrasena)
-			if acceso is not None:
-				if acceso.is_active:
-					login(request, acceso)
-					return HttpResponseRedirect("/user/perfil")
-				else:
-					login(request, acceso)
-					return HttpResponseRedirect("/user/active")
+		if request.session['cant']>3:
+			formulario_capt=for_captcha(request.POST)
+			if formulario_capt.is_valid():
+				pass
 			else:
-				return HttpResponse("Error en los datos")
+				datos={'formulario':formulario,'formulario_cp':formulario_capt }
+				return render_to_response("usuario/login.html",datos,context_instance=RequestContext(request))
+		if formulario.is_valid:
+				usuario=request.POST['username']
+				contrasena=request.POST['password']
+				acceso=authenticate(username=usuario,password=contrasena)
+				if acceso is not None:
+					if acceso.is_active:
+						login(request, acceso)
+						return HttpResponseRedirect("/user/perfil/")
+					else:
+						login(request, acceso)
+						del request.session['cant']
+						return HttpResponseRedirect("/user/active/")
+				else:
+					request.session['cant']=request.session['cant']+1;
+					con=request.session['cant']
+					estado_login=True
+					mensaje='Los datos ingresados son incorrectos '+str(con)
+					
+					if con>3:
+						formulario_capt=for_captcha()
+						datos={'formulario':formulario,'formulario_cp':formulario_capt ,'estado':estado_login,'mensaje':mensaje}
+					else:
+						datos={'formulario':formulario,'estado':estado_login,'mensaje':mensaje}
+					return render_to_response("usuario/login.html",datos,context_instance=RequestContext(request))
 	else:
+		request.session['cant']=0
 		formulario=AuthenticationForm()
 	return render_to_response("usuario/login.html",{'formulario':formulario},context_instance=RequestContext(request))
 
@@ -71,3 +91,8 @@ def user_activado_view(request):
 			return render_to_response("usuario/activar.html",{'formulario':formulario},context_instance=RequestContext(request))
 	else: 
 		return HttpResponseRedirect("/login/")
+
+
+	
+
+		

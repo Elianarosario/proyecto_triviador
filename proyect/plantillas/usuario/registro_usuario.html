@@ -8,13 +8,15 @@
 {%  block content %}
 	<div class="container">
 		<body background "bgcolor"="FFCECB">
+		<li class="active">
+ 				<a href="/" btaa><FONT FACE="impact" SIZE=4 COLOR="yellow">INICIO</FONT></a></li>
 		<div class="class row">
 		<div class="class col-xs-12">
 			<form action="" method="post">
 				{% csrf_token %}
 					{{ formulario.as_p }}
 				<input type="submit" name="" value="Registrar">	
-			</form>
+				</form>
 		</div>
 		</div>
 	</div>

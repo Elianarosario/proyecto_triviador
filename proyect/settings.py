@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'proyect.apps.principal',
     'proyect.apps.usuario',
+    'captcha',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -90,3 +91,7 @@ STATIC_URL = '/static/'
 TEMPLATE_DIRS=(os.path.join(BASE_DIR,"proyect/plantillas"),)
 STATICFILES_DIRS=(os.path.join(BASE_DIR,"proyect/static"),)
 MEDIA_ROOT=os.path.join(BASE_DIR,"proyect/media")
+
+#captcha
+RECAPTCHA_PUBLIC_KEY = '6LexWf4SAAAAAD_LPyKOcUzdmpUSwHiJbEVwFxk-'
+RECAPTCHA_PRIVATE_KEY = '6LexWf4SAAAAAAgeJ1FREQ4tt4F95ryK7wzQnYJq'

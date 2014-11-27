@@ -1,25 +1,30 @@
 <div class="Container">
-	<div background="Center"><img src="{{STATIC_URL}}img/f2.jpg"   />
+		<body background="{{STATIC_URL}}img/fondo1.jpg" style="">
 		<div class="col-xs-12">
+			<body background="" bgcolor="FFCECB">
 			<div class="logotipo" >
-				<DIV ALING="Center"><img src="{{STATIC_URL}}img/logot.jpg"  height="260" width="1000"  /> </DIV>
+				<div ALING="Center"><img src="{{STATIC_URL}}img/logot.jpg"  height="260" width="1000"  /> </div>
 			</div>	
 		</div>
 		<div class="navegadores">
 			<div class="class col-xs-4"></div>
 			<div class="col-xs-4">
 				<ul class="nav nav-pills">
-					<li class="active" bt><a href="RegistroUser/"><FONT FACE="impact" SIZE=4 COLOR="blue" background="yellow">REGISTRATE</FONT></a></li>
+					<li class="active" bt><a  class="btn btn-lg danger"href="RegistroUser/">REGISTRATE</a></li>
 					{% if user.is_authenticated  %}
-						<li class="active"><a href="/login"><FONT FACE="impact" SIZE=4 COLOR="black">LOGIN</FONT></a></li>	
+						<li class="active"><a href="/logout"><FONT FACE="impact" SIZE=4 COLOR="black">SALIR</FONT></a></li>	
 					{%else%}
-						<li><a href="/login"><FONT FACE="impact" SIZE=4 COLOR="black">LOGIN</FONT></a></li>	
+						<li class="active" ><a href="/login/"><FONT FACE="impact" SIZE=4 COLOR="black">LOGIN</FONT></a></li>	
 					{%endif%}
- 					<li class="active">
- 				<a href="/Inicio"><FONT FACE="impact" SIZE=4 COLOR="yellow">INICIO</FONT></p>
+ 					
+ 					<a class="btn btn-sucess">boton</a>
+
+
+
 				</ul>
 			</div>
-		</div>
+			</div>
+		</div>	
 		<div class="class col-xs-4"></div>
 		<div class="contenido">
 			<div class="class col-xs-4"></div>
