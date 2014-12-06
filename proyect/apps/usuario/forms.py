@@ -6,17 +6,13 @@ from django.contrib.auth.models import User
 from .models import *
 from captcha.fields import ReCaptchaField
 
-
 class for_captcha(forms.Form):
-    captcha = ReCaptchaField(attrs={'theme': 'clean'})
+	captcha = ReCaptchaField(attrs={'theme' : 'clean'})
 
 class form_perfil(ModelForm):
 	class Meta:
 		model=Perfil
 		exclude=['user']
-
-
-	
 		
 class for_usuario(UserCreationForm):
 	username=forms.CharField(max_length=40,required=True,help_text=False,label="Nickname")
@@ -35,6 +31,11 @@ class for_usuario(UserCreationForm):
 		if commit:
 			user.save()
 		return user
+
+class form_modifPerfil(ModelForm):
+	class Meta:
+		model=Perfil
+		exclude=['user']
 
 
 

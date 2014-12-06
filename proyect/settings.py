@@ -62,11 +62,10 @@ WSGI_APPLICATION = 'proyect.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'trivia',
+        'NAME': 'triviador',
         'USER':'root',
         'PASSWORD':'',
         'HOST':'localhost',
-        'PORT':'',
     }
 }
 

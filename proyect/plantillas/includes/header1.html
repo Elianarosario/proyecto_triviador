@@ -1,0 +1,35 @@
+<div class="Container">
+		<body background="{{STATIC_URL}}img/fondo1.jpg" style="">
+		<div class="col-xs-12">
+			<body background="" bgcolor="FFCECB">
+			<div class="logotipo" >
+				<div ALING="Center"><img src="{{STATIC_URL}}img/logot.jpg"  height="260" width="1000"  /> </div>
+			</div>	
+		</div>
+		<div class="navegadores">
+			<div class="class col-xs-4"></div>
+			<div class="col-xs-4">
+				<ul class="nav nav-pills">
+					<li class="active" bt><a  class="btn btn-lg danger"href="RegistroUser/">REGISTRATE</a></li>
+					{% if user.is_authenticated  %}
+						<li class="active"><a href="/logout"><FONT FACE="impact" SIZE=4 COLOR="black">SALIR</FONT></a></li>	
+					{%else%}
+						<li class="active" ><a href="/login/"><FONT FACE="impact" SIZE=4 COLOR="black">LOGIN</FONT></a></li>	
+					{%endif%}
+				</ul>
+			</div>
+			</div>
+		</div>	
+		<div class="class col-xs-4"></div>
+		<div class="contenido">
+			<div class="class col-xs-12"></div>
+			<div class="col-xs-12">
+			<div class="jumbotron">
+		        <p>	<FONT FACE="times new roman" SIZE=3 COLOR="black">
+					 Triviador es un juego donde podras demostrar tus habilidades mentales que tanto sabes y que tanto puedes demostrar,estas preparado para el reto!!!!!!!!
+					 Juega ahora con nosotros!!!!!!!!</FONT></p>
+		        <p><li class="btn"><a href="/jugar" class="btn btn-primary" role="button" bn><FONT FACE="impact" SIZE=6 COLOR="yellow">
+ JUGAR</FONT></p></a> </p>
+		      </div>
+	</div>
+</div>

@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login , authenticate, logout
+#from django.contrib.session.backends.db import sessionStore 
 
 
 import pdb
@@ -22,7 +23,7 @@ def registro_view(request):
 			usuario.is_active=False
 			usuario.save()
 			perfil=Perfil.objects.create(user=usuario)
-			return HttpResponse("REGISTRADO")
+			return HttpResponseRedirect("/")
 	else:
 			formulario_registro=for_usuario()
 	return render_to_response("usuario/registro_usuario.html",{'formulario':formulario_registro},context_instance=RequestContext(request))
@@ -55,7 +56,7 @@ def login_view(request):
 					estado_login=True
 					mensaje='Los datos ingresados son incorrectos '+str(con)
 					
-					if con>3:
+					if con>1:
 						formulario_capt=for_captcha()
 						datos={'formulario':formulario,'formulario_cp':formulario_capt ,'estado':estado_login,'mensaje':mensaje}
 					else:
@@ -91,6 +92,22 @@ def user_activado_view(request):
 			return render_to_response("usuario/activar.html",{'formulario':formulario},context_instance=RequestContext(request))
 	else: 
 		return HttpResponseRedirect("/login/")
+def modificar_perfil(request):
+	if request.user.is_authenticated():
+		u=request.user
+		usuario=User.objects.get(username=u)
+		perfil=Perfil.objects.get(user=usuario)
+		if request.method=='POST':
+			formulario=form_modifPerfil(request.POST,request.FILES,instance=perfil)
+			if formulario.is_valid():
+				formulario.save()
+				return HttpResponseRedirect("/usuario/"+str(usuario.id)+"/")
+		else:
+			formulario=form_modifPerfil(instance=perfil)
+			return render_to_response('/usuario/modificar_perfil.html',{'formulario':formulario},context_instance=RequestContext(request))
+	else:
+		return HttpResponseRedirect("/login/")
+
 
 
 	
