@@ -1,5 +1,111 @@
-extends layout
+doctype 5
+html
+    head
+    title Triviador - Seminario
+    link(href="/stylesheets/bootstrap.css", rel="stylesheet")
 
-block content
-  h1= title
-  p Welcome to #{title}
+    link(href="/stylesheets/normalize.css", rel="stylesheet") 
+    link(href="/stylesheets/wizardMain.css", rel="stylesheet") 
+    link(href="/stylesheets/jquery.steps.css", rel="stylesheet")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+
+    script(src='/socket.io/socket.io.js')
+    script(src="/javascripts/jquery-2.0.3.min.js")
+    script(src="/javascripts/jquery.cookie-1.3.1.js")
+    script(src="/javascripts/jquery.steps.js")
+    script(src="/javascripts/WizardInit.js")
+    script(type='text/javascript' src='/javascripts/functions.js')
+    
+    body
+        div(style="width:100%;background:#2dcc70;min-height:90px;")
+            br
+            div(class="navbar-collapse")
+                ul(class="nav navbar-nav navbar-right")
+                    li
+                        a(style="color:#ffffff;")
+                            b Nombre de Usuario
+                    li
+                        a(href="#about" style="color:#ffffff;") Salir
+                        
+        div(id="wizardV")
+            h2 Salas
+            section
+                div(class="col-lg-6 col-lg-offset-1")
+                    div(class="panel panel-success")
+                        div(class="panel-heading")
+                            h3(class="panel-title") Crear Nueva Sala
+                        div(class="panel-body")
+                            form(role="form")    
+                                div(class="form-group input-group")
+                                    span(class="input-group-addon") Nombre de Sala
+                                    input(type="text" name="name_sala" id="name_sala" class="form-control" placeholder="Nombre de la Sala")
+
+                                div(class="form-group input-group")
+                                    span(class="input-group-addon") Tipo de Partida
+                                    select(name="category" class="form-control")
+                                        option(value="publico") Público
+                                        option(value="privado") Privado
+
+                                div(class="form-group input-group")
+                                    span(class="input-group-addon") Preguntas
+                                    select(name="category" class="form-control")
+                                        option(value="") 5
+                                        option(value="") 10
+                                        option(value="") 15
+                                        option(value="") 20
+                                        option(value="") 25
+
+                                div(class="form-group input-group")
+                                    span(class="input-group-addon") Tiempo de Respuesta
+                                    select(name="category" class="form-control")
+                                        option(value="") 5 Segundos
+                                        option(value="") 10 Segundos
+                                        option(value="") 15 Segundos
+                                        option(value="") 20 Segundos
+                                        option(value="") 25 Segundos
+                                                         
+                                div(class="form-group input-group")
+                                    span(class="input-group-addon") Categorias
+                                    select(name="category" multiple="" class="form-control")
+                                        option(value="") Ciencia Ficcion
+                                        option(value="") Quimica
+                                        option(value="") Entretenimiento
+                                        
+                div(class="col-lg-4")
+                    div(class="panel panel-success")
+                        div(class="panel-heading")
+                            h3(class="panel-title") Salas Creadas
+                        div(class="panel-body" style="max-height:320px;overflow-y: scroll;")
+                            div(class="list-group" id="salas" name="salas")
+                    
+
+            h2 Chat
+            section
+                .row
+                    #formModal.modal
+                        .modal-dialog
+                            .modal-content
+                                .modal-header
+                                    h2.title-modal
+                                .modal-body
+                                    p.formModal
+                                .modal-footer
+                    #title
+                        h2(id="title" name="title") Bienvenido al chat
+                    .col-md-9#containerMessages
+                        .panel.panel-primary.head
+                            .panel-heading
+                                p Mensajes de la sala
+                        #chatMsgs
+                    .col-md-3#containerUsers
+                        .panel.panel-primary.head
+                            .panel-heading
+                                p Usuarios
+                        #chatUsers
+                    .col-md-7#containerSendMessages
+                        input.message.col-md-12.form-control(type="text",placeholder="Escribe un mensaje")
+                    .col-md-2#containerSendMessages
+                        button.btn.btn-large.btn-block.btn-primary.sendMsg() Enviar mensaje                                  
+
+        
+        

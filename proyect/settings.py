@@ -27,6 +27,8 @@ TEMPLATE_DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
+
 # Application definition
 
 INSTALLED_APPS = (
@@ -39,6 +41,7 @@ INSTALLED_APPS = (
     'proyect.apps.principal',
     'proyect.apps.usuario',
     'captcha',
+    'social.apps.django_app.default',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -49,6 +52,18 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+
+
+
+AUTHENTICATION_BACKENDS = (
+   
+   
+   'social.backends.facebook.FacebookAppOAuth2',
+   'social.backends.facebook.FacebookOAuth2',
+   'social.backends.twitter.TwitterOAuth',
+   'django.contrib.auth.backends.ModelBackend',
 )
 
 ROOT_URLCONF = 'proyect.urls'
@@ -62,9 +77,9 @@ WSGI_APPLICATION = 'proyect.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'triviador',
-        'USER':'root',
-        'PASSWORD':'',
+        'NAME': 'trivial_sem',
+        'USER':'trivial_sem',
+        'PASSWORD':'trivial_sem',
         'HOST':'localhost',
     }
 }
@@ -91,6 +106,12 @@ TEMPLATE_DIRS=(os.path.join(BASE_DIR,"proyect/plantillas"),)
 STATICFILES_DIRS=(os.path.join(BASE_DIR,"proyect/static"),)
 MEDIA_ROOT=os.path.join(BASE_DIR,"proyect/media")
 
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
+
 #captcha
 RECAPTCHA_PUBLIC_KEY = '6LexWf4SAAAAAD_LPyKOcUzdmpUSwHiJbEVwFxk-'
 RECAPTCHA_PRIVATE_KEY = '6LexWf4SAAAAAAgeJ1FREQ4tt4F95ryK7wzQnYJq'
+
+
+SOCIAL_AUTH_FACEBOOK_KEY ='750117908392199'
+SOCIAL_AUTH_FACEBOOK_SECRET ='00100e6e2df402e61f69f960e67fc646'

@@ -7,8 +7,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login , authenticate, logout
-#from django.contrib.session.backends.db import sessionStore 
-
+from django.contrib.sessions.backends.db import SessionStore
+from django.contrib import auth
 
 import pdb
 
@@ -43,9 +43,15 @@ def login_view(request):
 				contrasena=request.POST['password']
 				acceso=authenticate(username=usuario,password=contrasena)
 				if acceso is not None:
+
 					if acceso.is_active:
-						login(request, acceso)
-						return HttpResponseRedirect("/user/perfil/")
+						login(request,acceso)
+						p=SessionStore()
+						p["name"]=usuario
+						p["estado"]="conectado"
+						p.save()
+						request.session["idkey"]=p.session_key
+						return HttpResponseRedirect("/user/perfil")
 					else:
 						login(request, acceso)
 						del request.session['cant']
@@ -68,8 +74,10 @@ def login_view(request):
 	return render_to_response("usuario/login.html",{'formulario':formulario},context_instance=RequestContext(request))
 
 def logout_view(request):
-	logout(request)
+	
+	auth.logout(request)
 	return HttpResponseRedirect("/")
+
 def perfil_view(request):
 	return render_to_response("usuario/perfil.html",{},context_instance=RequestContext(request))
 def user_activado_view(request):

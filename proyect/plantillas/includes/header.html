@@ -6,7 +6,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a id="logo" class="pull-left" href="index.html"></a>
+                
                 <div class="nav-collapse collapse pull-right">
                     <ul class="nav">
                         <li class="active"><a href="/">Inicio</a></li>
@@ -14,14 +14,15 @@
                         {% if user.is_authenticated %}
                             <li><a href="/logout">Salir</a></li>
                             <li><a href="modificar_perfil/">MODIFICAR</a></li>
-                            <li><a href="triviador/">TRIVIADOR/<a></li>
+                            <li><a href="http://127.0.0.1:3000/">TRIVIADOR<a></li>
 
                         {% else %}
                         <li class="login">
                             <a data-toggle="modal" href="/login/"><i class="icon-lock"></i></a>
                         </li>
                         {% endif %}
-                        <li><a href="http://www.facebook.com">Facebook</a></li>
+                        <li><a href="{% url 'social:begin' 'facebook' %}">Facebook Login</a></li>
+
                     </ul>        
                 </div><!--/.nav-collapse -->
             </div>

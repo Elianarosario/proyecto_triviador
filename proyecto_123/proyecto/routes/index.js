@@ -1,17 +1,8 @@
-var express = require('express');
-var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res) {
+/*
+ * GET home page.
+ */
+
+exports.index = function(req, res){
   res.render('index', { title: 'Express' });
-});
-router.get('/chat/', function(req, res) {
-  res.render('chat', { title: 'Express' });
-});
-router.get('/partidas/', function(req, res) {
-  res.render('partidas', { title: 'Express' });
-});
-
-
-
-module.exports = router;
+};

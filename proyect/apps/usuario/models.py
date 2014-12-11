@@ -3,6 +3,7 @@ from django.db import models
 from thumbs import ImageWithThumbsField
 from django.contrib.auth.models import User
 from django.forms import ModelForm
+
 # Create your models here.
 class Perfil(models.Model):
 	user=models.OneToOneField(User,unique=True)

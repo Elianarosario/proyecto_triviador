@@ -12,6 +12,7 @@ class Categoria(models.Model):
 
 
 class Pregunta(models.Model):
+
 	categoria=models.ForeignKey(Categoria)
 	titulo_pregunta=models.CharField(max_length=500)
 	respuesta_correcta=models.CharField(max_length=400)
@@ -25,5 +26,12 @@ class Respuesta(models.Model):
 	pregunta=models.ForeignKey(Pregunta)
 	def __str__(self):
 		return self.pregunta
+
+class Partidas(models.Model):
+	nombre_partida=models.CharField(max_length=500)
+	creador=models.CharField(max_length=500)
+	categoria=models.TextField()
+	def __str__(self):
+		return self.nombre_partida
 	
 	
